@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURUM & CO. | Private Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root { --gold: #c5a059; --bg: #050505; --white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .serif { font-family: 'Cinzel', serif; text-transform: uppercase; letter-spacing: 0.3em; }
+
+        /* Custom Cursor for Luxury Feel */
+        #cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10000; transition: transform 0.1s; }
+
+        /* --- PASSWORD GATE --- */
+        #gate { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        #gate input { background: transparent; border: none; border-bottom: 1px solid var(--gold); color: white; padding: 15px; text-align: center; width: 250px; outline: none; margin-top: 30px; font-family: 'Inter'; letter-spacing: 0.5em; font-size: 0.8rem; }
+
+        /* --- NAVIGATION --- */
+        nav { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 100; }
+        .logo { font-size: 1.4rem; color: var(--gold); }
+
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .hero-video-alt { position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.pexels.com/photos/2853937/pexels-photo-2853937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') center/cover; }
+        .hero-content { position: relative; text-align: center; }
+        .hero-content h1 { font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; margin-bottom: 20px; }
+        .hero-content p { color: var(--gold); letter-spacing: 0.5em; font-size: 0.7rem; }
+
+        /* --- SECTION TITLES --- */
+        .section-tag { text-align: center; padding: 100px 0 20px; color: var(--gold); font-size: 0.6rem; letter-spacing: 0.6em; }
+
+        /* --- LUXURY GRID --- */
+        .showcase { padding: 0 10% 150px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+        .item { position: relative; grid-column: span 4; opacity: 0; }
+        .item:nth-child(2) { grid-column: span 4; margin-top: 100px; } /* Offset layout */
+        
+        .img-wrap { width: 100%; aspect-ratio: 4/6; overflow: hidden; background: #111; position: relative; }
+        .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .item:hover img { transform: scale(1.1); }
+
+        .meta { margin-top: 25px; }
+        .meta h3 { font-size: 1.2rem; font-weight: 400; margin-bottom: 5px; }
+        .meta p { font-size: 0.65rem; color: var(--gold); letter-spacing: 0.2em; }
+
+        /* --- FOOTER --- */
+        footer { padding: 100px 10%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+        .credit { font-size: 0.6rem; letter-spacing: 0.3em; color: #444; margin-top: 40px; }
+        .credit span { color: var(--white); }
+
+        @media (max-width: 1000px) {
+            .item { grid-column: span 12 !important; margin-top: 50px !important; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <div id="gate">
+        <h2 class="serif" style="color:var(--gold)">Aurum & Co.</h2>
+        <input type="password" id="pass" placeholder="ENTER PORTAL CODE" onkeyup="if(event.key==='Enter')launch()">
+    </div>
+
+    <div id="main" style="display:none; opacity:0;">
+        <nav>
+            <div class="logo serif">Aurum</div>
+            <div class="serif" style="font-size:0.6rem; border:1px solid var(--gold); padding:12px 25px; background: rgba(197, 160, 89, 0.1);">Private Inquiry</div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-video-alt"></div>
+            <div class="hero-content">
+                <p class="serif">The 2026 Collection</p>
+                <h1 class="serif">Pure<br><span style="color:var(--gold); font-style: italic; text-transform: lowercase;">elegance</span></h1>
+            </div>
+        </section>
+
+        <div class="section-tag serif">— Selected Works —</div>
+
+        <section class="showcase">
+            <div class="item">
+                <div class="img-wrap">
+                    <img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Horology">
+                </div>
+                <div class="meta">
+                    <p class="serif">Horology</p>
+                    <h3 class="serif">The Chronos III</h3>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="img-wrap">
+                    <img src="https://images.pexels.com/photos/1458867/pexels-photo-1458867.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bridal">
+                </div>
+                <div class="meta">
+                    <p class="serif">Bridal</p>
+                    <h3 class="serif">Eternal Solitaire</h3>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="img-wrap">
+                    <img src="https://images.pexels.com/photos/248077/pexels-photo-248077.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fine Art">
+                </div>
+                <div class="meta">
+                    <p class="serif">High Jewelry</p>
+                    <h3 class="serif">Aurelian Drop</h3>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="serif" style="color:var(--gold); font-size: 1.2rem;">Aurum & Co.</div>
+            <div class="credit serif">Custom Architecture by <span>Hashem | Web Solutions</span></div>
+        </footer>
+    </div>
+
+    <script>
+        // Custom Cursor Movement
+        document.addEventListener('mousemove', e => {
+            gsap.to("#cursor", { x: e.clientX, y: e.clientY, duration: 0.1 });
+        });
+
+        function launch() {
+            if(document.getElementById('pass').value === 'GOLD2026') {
+                gsap.to("#gate", { y: "-100%", duration: 1.2, ease: "power4.inOut" });
+                document.getElementById('main').style.display = 'block';
+                gsap.to("#main", { opacity: 1, duration: 2, delay: 0.5 });
+                initScroll();
+            } else {
+                alert("Access Restricted.");
+            }
+        }
+
+        function initScroll() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Staggered reveal of items
+            gsap.to(".item", {
+                scrollTrigger: {
+                    trigger: ".showcase",
+                    start: "top 80%"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.4,
+                ease: "power4.out"
+            });
+
+            // Parallax effect on images
+            gsap.utils.toArray('.img-wrap img').forEach(img => {
+                gsap.to(img, {
+                    y: 40,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: img,
+                        scrub: true
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
